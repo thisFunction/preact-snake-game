@@ -17,7 +17,6 @@ class SnakeGame extends Component {
 		],
 		fruitX: 0,
 		fruitY: 0,
-		score: 0,
 		changingDirection: false,
 		dx: 10,
 		dy: 0,
@@ -49,8 +48,6 @@ class SnakeGame extends Component {
 	}
 
 	setFruitY = (value) => this.setState({ fruitY: value });
-
-	addScore = () => this.setState({ score: this.state.score + 10 });
 
 	increaseSnakeSpeed = () => this.setState({ snakeSpeed: this.state.snakeSpeed / 1.05 });
 
@@ -108,7 +105,7 @@ class SnakeGame extends Component {
 				&& this.state.snake[0].y === this.state.fruitY;
 			
 			if (ateFood) {
-				this.addScore();
+				this.props.addScore();
 
 				const score = this.state.score;
 
@@ -198,10 +195,7 @@ class SnakeGame extends Component {
 
     render() {
         return (
-			<div>
-				<p>Score: {this.state.score}</p>
-				<canvas style="margin:auto;" width="300" height="300" id="game-canvas" />
-			</div>
+			<canvas width="300" height="260" id="game-canvas" />
 		);
     }
 }

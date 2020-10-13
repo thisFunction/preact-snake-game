@@ -1,0 +1,22 @@
+.Container {
+    width: 300px;
+    height: 260px;
+    background: #b4c100;
+    border: 1px solid #6d620f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Button {
+    background-color: transparent;
+    border: 1px solid #6d6211;
+    color: #6d6211;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 6px 10px;
+}
+
+.Button:hover {
+    border-color: #978717;
+}
