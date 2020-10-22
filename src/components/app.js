@@ -13,7 +13,7 @@ class App extends Component {
 
 	finishGame = () => this.setState({ gameOver: true });
 
-	addScore = () => this.setState({ score: this.state.score += 15 });
+	addScore = () => this.setState({ score: this.state.score += 10 });
 
 	render() {
 		return (
@@ -24,6 +24,7 @@ class App extends Component {
 					: <SnakeGame 
 						addScore={this.addScore} 
 						finishGame={this.finishGame} 
+						score={this.state.score}
 					/>
 				}
 			</div>

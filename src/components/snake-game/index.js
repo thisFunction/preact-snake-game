@@ -51,8 +51,6 @@ class SnakeGame extends Component {
 
 	increaseSnakeSpeed = () => this.setState({ snakeSpeed: this.state.snakeSpeed / 1.05 });
 
-	setGameOver = () => this.setState({ gameOver: true });
-
 	componentDidMount = () => {
 		const canvasColor = '#b4c100';
 		const canvasOutlineColor = '#6d620f';
@@ -107,11 +105,9 @@ class SnakeGame extends Component {
 			if (ateFood) {
 				this.props.addScore();
 
-				const score = this.state.score;
-
 				makeFruit(this.state.snake, this.setFruitX, this.setFruitY);
 
-				if (score % 50 === 0) {
+				if (this.props.score % 50 === 0) {
 					this.increaseSnakeSpeed();
 				}
 			} else {
@@ -139,7 +135,7 @@ class SnakeGame extends Component {
 
 		const drawFood = () => {
 			context.fillStyle = '#f75d5d';
-			context.strokestyle = 'indianred';
+			context.strokestyle = '#cd5c5c';
 			context.fillRect(this.state.fruitX, this.state.fruitY, 10, 10);
 			context.strokeRect(this.state.fruitX, this.state.fruitY, 10, 10);
 		}
