@@ -157,20 +157,6 @@ class SnakeGame extends Component {
 			return hitLeftWall || hitRightWall || hitTopWall || hitBottomWall
 		}
 
-		const play = () => {
-			if (gameOver(this.state.snake)) { return this.props.finishGame(); }
-
-			this.setChangingDirection(false);
-
-			setTimeout(() => {
-				clearBoard();
-				drawFood();
-				move();
-				drawSnake();
-				play();
-			}, this.state.snakeSpeed);
-		}
-
 		const randomValue = (min, max) => {
 			return Math.round((Math.random() * (max-min) + min) / 10) * 10;
 		}
@@ -188,9 +174,28 @@ class SnakeGame extends Component {
 				makeFruit(snake, fruitNewXValue, fruitNewYValue, setFruitX, setFruitY);
 			}
 		}
-
-		play();
+		
 		makeFruit(this.state.snake, this.setFruitX, this.setFruitY);
+
+		let last = Date.now();
+
+		const play = () => {
+			if (gameOver(this.state.snake)) { return this.props.finishGame(); }
+
+			this.setChangingDirection(false);
+
+			if (Date.now() - last >= this.state.snakeSpeed) {
+				clearBoard();
+				drawFood();
+				move();
+				drawSnake();
+				last = Date.now();
+			}
+
+			requestAnimationFrame(play);
+		}
+		
+		play();
 	}
 
     render() {
